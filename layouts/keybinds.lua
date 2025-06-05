@@ -1,5 +1,4 @@
 require("keybow")
-local socket = require("socket")
 
 -- [[
 -- This keybind file rotates the classic layout of the keybow counter-clockwise by 90 degrees.
@@ -25,15 +24,14 @@ function setup()
     keybow.clear_lights()
 end
 
--- Blink key for 3 seconds --
-function start_blink(key_index)
-    local start_time = socket.gettime()
-    local duration = 3 -- seconds
+-- Blink key  --
+function blink(key_index)
+    local blink_times = 6
 
-    while socket.gettime() - start_time < duration do
-        keybow.set_pixel(key_index - 1, 255, 165, 0) -- Orange
+    for i = 1, blink_times do
+        keybow.set_pixel(key_index - 1, 255, 165, 0) -- Orange on
         keybow.sleep(250)
-        keybow.set_pixel(key_index - 1, 0, 0, 0)
+        keybow.set_pixel(key_index - 1, 0, 0, 0)     -- Off
         keybow.sleep(250)
     end
 end
@@ -86,11 +84,7 @@ end
 -- X X X O
 -- X X X X
 -- Asterisk Key --
-function handle_key_01(pressed)
-    if pressed then
-        start_blink(2)
-    end
-end
+function handle_key_01(pressed) if pressed then blink(2) end end
 
 -- X X X O
 -- X X X X
@@ -108,88 +102,52 @@ end
 -- X X X X
 -- X X O X
 -- 3 Key --
-function handle_key_03(pressed)
-    if pressed then
-        start_blink(4)
-    end
-end
+function handle_key_03(pressed) if pressed then blink(4) end end
 
 -- X X X X
 -- X X O X
 -- X X X X
 -- 6 Key --
-function handle_key_04(pressed)
-    if pressed then
-        start_blink(5)
-    end
-end
+function handle_key_04(pressed) if pressed then blink(5) end end
 
 -- X X O X
 -- X X X X
 -- X X X X
 -- 9 Key --
-function handle_key_05(pressed)
-    if pressed then
-        start_blink(6)
-    end
-end
+function handle_key_05(pressed) if pressed then blink(6) end end
 
 -- X X X X
 -- X X X X
 -- X O X X
 -- 2 Key --
-function handle_key_06(pressed)
-    if pressed then
-        start_blink(7)
-    end
-end
+function handle_key_06(pressed) if pressed then blink(7) end end
 
 -- X X X X
 -- X O X X
 -- X X X X
 -- 5 Key --
-function handle_key_07(pressed)
-    if pressed then
-        start_blink(8)
-    end
-end
+function handle_key_07(pressed) if pressed then blink(8) end end
 
 -- X O X X
 -- X X X X
 -- X X X X
 -- 8 Key --
-function handle_key_08(pressed)
-    if pressed then
-        start_blink(9)
-    end
-end
+function handle_key_08(pressed) if pressed then blink(9) end end
 
 -- X X X X
 -- X X X X
 -- O X X X
 -- 1 Key --
-function handle_key_09(pressed)
-    if pressed then
-        start_blink(10)
-    end
-end
+function handle_key_09(pressed) if pressed then blink(10) end end
 
 -- X X X X
 -- O X X X
 -- X X X X
 -- 4 Key --
-function handle_key_10(pressed)
-    if pressed then
-        start_blink(11)
-    end
-end
+function handle_key_10(pressed) if pressed then blink(11) end end
 
 -- O X X X
 -- X X X X
 -- X X X X
 -- 7 Key --
-function handle_key_11(pressed)
-    if pressed then
-        start_blink(12)
-    end
-end
+function handle_key_11(pressed) if pressed then blink(12) end end
