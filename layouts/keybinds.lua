@@ -50,6 +50,16 @@ function modifier(key, ...)
     end
 end
 
+-- Helper function for instant key presses --
+function toggle_instant(key_index, pressed, modifier_func)
+    if pressed then
+        keybow.set_pixel(key_index - 1, 0, 0, 255) -- Blue on press
+        modifier_func()
+    else
+        keybow.set_pixel(key_index - 1, 255, 165, 0) -- Orange on release
+    end
+end
+
 -- Helper function to handle key toggles --
 function toggle_active(key_index, pressed, modifier_func)
     local _active = active[key_index]
@@ -66,88 +76,126 @@ function toggle_active(key_index, pressed, modifier_func)
     end
 end
 
+--------------------
 -- Key Mappings
+--------------------
 
 -- X X X X
 -- X X X X
 -- X X X O
--- Delete Key --
+-- Delete Key -- Discord Mute Mic
 function handle_key_00(pressed)
-    if pressed then
-        toggle_active(1, pressed, function()
-            modifier("m", keybow.LEFT_CTRL, keybow.LEFT_SHIFT)
-        end)
-    end
+    toggle_active(1, pressed, function()
+        modifier("m", keybow.LEFT_CTRL, keybow.LEFT_SHIFT)
+    end)
 end
 
 -- X X X X
 -- X X X O
 -- X X X X
 -- Asterisk Key --
-function handle_key_01(pressed) if pressed then blink(2) end end
+function handle_key_01(pressed)
+    toggle_instant(2, pressed, function()
+        modifier(keybow.KPASTERISK)
+    end)
+end
 
 -- X X X O
 -- X X X X
 -- X X X X
 -- Blank Key -- Discord Mute Sound
 function handle_key_02(pressed)
-    if pressed then
-        toggle_active(3, pressed, function()
-            modifier("d", keybow.LEFT_CTRL, keybow.LEFT_SHIFT)
-        end)
-    end
+    toggle_active(3, pressed, function()
+        modifier("d", keybow.LEFT_CTRL, keybow.LEFT_SHIFT)
+    end)
 end
 
 -- X X X X
 -- X X X X
 -- X X O X
 -- 3 Key --
-function handle_key_03(pressed) if pressed then blink(4) end end
+function handle_key_03(pressed)
+    toggle_instant(4, pressed, function()
+        modifier(keybow.KP3)
+    end)
+end
 
 -- X X X X
 -- X X O X
 -- X X X X
 -- 6 Key --
-function handle_key_04(pressed) if pressed then blink(5) end end
+function handle_key_04(pressed)
+    toggle_instant(5, pressed, function()
+        modifier(keybow.KP6)
+    end)
+end
 
 -- X X O X
 -- X X X X
 -- X X X X
 -- 9 Key --
-function handle_key_05(pressed) if pressed then blink(6) end end
+function handle_key_05(pressed)
+    toggle_instant(6, pressed, function()
+        modifier(keybow.KP9)
+    end)
+end
 
 -- X X X X
 -- X X X X
 -- X O X X
 -- 2 Key --
-function handle_key_06(pressed) if pressed then blink(7) end end
+function handle_key_06(pressed)
+    toggle_instant(7, pressed, function()
+        modifier(keybow.KP2)
+    end)
+end
 
 -- X X X X
 -- X O X X
 -- X X X X
 -- 5 Key --
-function handle_key_07(pressed) if pressed then blink(8) end end
+function handle_key_07(pressed)
+    toggle_instant(8, pressed, function()
+        modifier(keybow.KP5)
+    end)
+end
 
 -- X O X X
 -- X X X X
 -- X X X X
 -- 8 Key --
-function handle_key_08(pressed) if pressed then blink(9) end end
+function handle_key_08(pressed)
+    toggle_instant(9, pressed, function()
+        modifier(keybow.KP8)
+    end)
+end
 
 -- X X X X
 -- X X X X
 -- O X X X
 -- 1 Key --
-function handle_key_09(pressed) if pressed then blink(10) end end
+function handle_key_09(pressed)
+    toggle_instant(10, pressed, function()
+        modifier(keybow.KP1)
+    end)
+end
 
 -- X X X X
 -- O X X X
 -- X X X X
 -- 4 Key --
-function handle_key_10(pressed) if pressed then blink(11) end end
+function handle_key_10(pressed)
+    toggle_instant(11, pressed, function()
+        modifier(keybow.KP4)
+    end)
+end
 
 -- O X X X
 -- X X X X
 -- X X X X
 -- 7 Key --
-function handle_key_11(pressed) if pressed then blink(12) end end
+function handle_key_11(pressed)
+    toggle_instant(12, pressed, function()
+        modifier(keybow.KP7)
+    end)
+end
